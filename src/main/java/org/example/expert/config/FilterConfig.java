@@ -16,7 +16,16 @@ public class FilterConfig {
         FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new JwtFilter(jwtUtil));
         registrationBean.addUrlPatterns("/*"); // 필터를 적용할 URL 패턴을 지정합니다.
+        registrationBean.setOrder(1);
+        return registrationBean;
+    }
 
+    @Bean
+    public FilterRegistrationBean<CachingRequestFilter> cachingRequestFilter() {
+        FilterRegistrationBean<CachingRequestFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new CachingRequestFilter());
+        registrationBean.addUrlPatterns("/admin/*");
+        registrationBean.setOrder(2);
         return registrationBean;
     }
 }
