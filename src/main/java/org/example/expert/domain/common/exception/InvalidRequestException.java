@@ -1,7 +1,9 @@
 package org.example.expert.domain.common.exception;
 
-public class InvalidRequestException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class InvalidRequestException extends GeneralException {
     public InvalidRequestException(String message) {
-        super(message);
+        super(HttpStatus.BAD_REQUEST, message);
     }
 }
